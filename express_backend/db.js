@@ -1,11 +1,11 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  user: 'mario',
-  password: 'mariopassword',
-  host: 'db', 
-  port: 5432, // default Postgres port
-  database: 'etms'
+    user: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    host: process.env.POSTGRES_HOST, 
+    port: process.env.POSTGRES_PORT, 
+    database: process.env.POSTGRES_DB
 });
 
 //A function to check if the selected db exist

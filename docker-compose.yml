@@ -7,17 +7,8 @@ services:
     container_name: postgres-db
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_DB: etms
-      POSTGRES_USER: mario
-      POSTGRES_PASSWORD: mariopassword
-
-  #cpp-backend:
-    #build: ./cpp-backend
-    #ports:
-     # - "9999:9999"
-    #depends_on:
-      #- python-backend
+    env_file:
+      - .env
 
   python-backend:
     build: ./python-backend
@@ -27,7 +18,8 @@ services:
       - ./python-backend:/app
     depends_on:
       - db
-
+    env_file:
+      - .env
   express_backend: 
     build: ./express_backend
     ports:
@@ -37,7 +29,7 @@ services:
     volumes:
       - ./express_backend:/app
       - express_backend_node_modules:/app/node_modules
-  
+
   frontend:
     build: ./etms_app_frontend/frontend
     ports:

@@ -19,3 +19,6 @@ build
 *.test.*
 .vscode
 
+# ignore folder
+cpp-backend
+
